@@ -1,13 +1,6 @@
 {
   "data": [
     {
-      "id": "2",
-      "titre": "Laugh Factory",
-      "genre": "comedie",
-      "stock": 20,
-      "evaluation": 3.8
-    },
-    {
       "id": "3",
       "titre": "Night Trap",
       "genre": "thriller",
