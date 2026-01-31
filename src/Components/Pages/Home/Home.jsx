@@ -17,6 +17,9 @@ export default function Home() {
   const handleBtnForm = (param) => {
     navigate(param ? `/updateFilm/${param}` : `/createFilm`);
   };
+  const handleBtnDetaille = (param) => {
+    navigate(`/FilmDetaille/${param}`);
+  };
   const handleBtnDelete = (id) => {
     if (confirm("Are You Sure ?")) {
       fetch(`${ApiPath}/${id}`, {
@@ -46,13 +49,12 @@ export default function Home() {
       </button>
       <table style={{ width: "100%" }}>
         <thead style={{ background: "green" }}>
-          <tr>
-            <td>Id</td>
-            <td>Titre</td>
-            <td>Genre</td>
-            <td>Stock</td>
-            <td>Evaluation</td>
-            <td>Action</td>
+          <tr style={{ textAlign: "center" }}>
+            <td style={{ fontSize: "20px", padding: "5px 0" }}>Titre</td>
+            <td style={{ fontSize: "20px", padding: "5px 0" }}>Genre</td>
+            <td style={{ fontSize: "20px", padding: "5px 0" }}>Stock</td>
+            <td style={{ fontSize: "20px", padding: "5px 0" }}>Evaluation</td>
+            <td style={{ fontSize: "20px", padding: "5px 0" }}>Action</td>
           </tr>
         </thead>
         <tbody>
@@ -66,8 +68,7 @@ export default function Home() {
                   color: "white",
                 }}
               >
-                <td style={{ padding: "5px 0" }}>{p.id}</td>
-                <td>{p.titre}</td>
+                <td style={{ padding: "5px 0" }}>{p.titre}</td>
                 <td>{p.genre}</td>
                 <td>{p.stock}</td>
                 <td>
@@ -80,7 +81,7 @@ export default function Home() {
                     alignItems: "center",
                   }}
                 >
-                  <button>✅</button>
+                  <button onClick={() => handleBtnDetaille(p.id)}>✅</button>
                   <button onClick={() => handleBtnForm(p.id)}>📝</button>
                   <button onClick={() => handleBtnDelete(p.id)}>❌</button>
                 </td>
