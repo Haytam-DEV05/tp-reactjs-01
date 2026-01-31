@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "titre": "Shadow Strike",
+      "genre": "action",
+      "stock": 12,
+      "evaluation": 4.5
+    },
+    {
+      "id": 2,
+      "titre": "Laugh Factory",
+      "genre": "comedie",
+      "stock": 20,
+      "evaluation": 3.8
+    },
+    {
+      "id": 3,
+      "titre": "Night Trap",
+      "genre": "thriller",
+      "stock": 8,
+      "evaluation": 4.2
+    },
+    {
+      "id": 4,
+      "titre": "Fast Revenge",
+      "genre": "action",
+      "stock": 15,
+      "evaluation": 4.0
+    },
+    {
+      "id": 5,
+      "titre": "Crazy Neighbors",
+      "genre": "comedie",
+      "stock": 25,
+      "evaluation": 3.5
+    },
+    {
+      "id": 6,
+      "titre": "Silent Fear",
+      "genre": "thriller",
+      "stock": 6,
+      "evaluation": 4.7
+    },
+    {
+      "id": 7,
+      "titre": "Last Mission",
+      "genre": "action",
+      "stock": 10,
+      "evaluation": 4.3
+    },
+    {
+      "id": 8,
+      "titre": "Holiday Mess",
+      "genre": "comedie",
+      "stock": 18,
+      "evaluation": 3.9
+    },
+    {
+      "id": 9,
+      "titre": "Dark Secret",
+      "genre": "thriller",
+      "stock": 5,
+      "evaluation": 4.6
+    },
+    {
+      "id": 10,
+      "titre": "Street Heroes",
+      "genre": "action",
+      "stock": 14,
+      "evaluation": 4.1
+    }
+  ]
+}
