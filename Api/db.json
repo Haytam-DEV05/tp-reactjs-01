@@ -26,7 +26,7 @@
       "titre": "Fast Revenge",
       "genre": "action",
       "stock": 15,
-      "evaluation": 4.0
+      "evaluation": 4
     },
     {
       "id": 5,
@@ -69,6 +69,27 @@
       "genre": "action",
       "stock": 14,
       "evaluation": 4.1
+    },
+    {
+      "id": 1769864430741,
+      "titre": "kabazal",
+      "genre": "",
+      "stock": "2.5",
+      "evaluation": "20"
+    },
+    {
+      "id": 1769864471653,
+      "titre": "yassine",
+      "genre": "",
+      "stock": "2.5",
+      "evaluation": "20"
+    },
+    {
+      "id": 1769864508597,
+      "titre": "yassine01",
+      "genre": "",
+      "stock": "2.5",
+      "evaluation": "20"
     }
   ]
 }
