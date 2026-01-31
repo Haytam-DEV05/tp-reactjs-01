@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function Home() {
+  const ApiPath = "http://localhost:2005/data";
   const [allFilms, setAllFilms] = useState([]);
   const [films, setFilms] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:2005/data")
+    fetch(ApiPath)
       .then((res) => res.json())
       .then((data) => {
         setAllFilms(data);
@@ -15,6 +16,16 @@ export default function Home() {
   const navigate = useNavigate();
   const handleBtnForm = (param) => {
     navigate(param ? `/updateFilm/${param}` : `/createFilm`);
+  };
+  const handleBtnDelete = (id) => {
+    if (confirm("Are You Sure ?")) {
+      fetch(`${ApiPath}/${id}`, {
+        method: "DELETE",
+      }).then(() => {
+        setFilms(allFilms.filter((ele) => ele.id != id));
+        alert("Film Delete Successfuly !");
+      });
+    }
   };
   return (
     <div className="container" style={{ maxWidth: "1100px", margin: "auto" }}>
@@ -71,7 +82,7 @@ export default function Home() {
                 >
                   <button>✅</button>
                   <button onClick={() => handleBtnForm(p.id)}>📝</button>
-                  <button>❌</button>
+                  <button onClick={() => handleBtnDelete(p.id)}>❌</button>
                 </td>
               </tr>
             );

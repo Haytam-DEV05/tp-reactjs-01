@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Form.css";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 export default function Form() {
   const { id } = useParams();
+  const method = id ? "PUT" : "POST";
   const apiPath = id
     ? `http://localhost:2005/data/${id}`
     : `http://localhost:2005/data`;
@@ -14,24 +15,44 @@ export default function Form() {
     stock: "",
     evaluation: "",
   });
+
+  // GET THE FILM FOR UPDATE DATA =>
+  useEffect(() => {
+    if (id) {
+      fetch(apiPath)
+        .then((res) => res.json())
+        .then((data) => {
+          setFomrInputs({
+            titre: data.titre,
+            genre: data.genre,
+            stock: data.stock,
+            evaluation: data.evaluation,
+          });
+        });
+    }
+  }, [apiPath, id]);
+  const navigate = useNavigate();
+  // HANDLE SUBMIT FILM =>
   const handleBtnSubmit = (e) => {
     e.preventDefault();
     fetch(apiPath, {
-      method: "POST",
+      method: method,
       headers: { "Content-Type": "applications/json" },
-      body: JSON.stringify({ id: Date.now(), ...formInputs }),
+      body: JSON.stringify({ id: `${Date.now()}`, ...formInputs }),
     }).then((res) => {
       if (res.ok) {
-        alert("film added succsessfuly");
+        alert(`film ${id ? "Updated" : "added"}  succsessfuly`);
         setFomrInputs({
           titre: "",
           genre: "",
           stock: "",
           evaluation: "",
         });
+        navigate("/");
       }
     });
   };
+
   return (
     <div className="container">
       <h1>{`${id ? "Update" : "create"} The Film`}</h1>
