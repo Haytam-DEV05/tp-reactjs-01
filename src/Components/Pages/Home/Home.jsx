@@ -2,24 +2,28 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function Home() {
+  const itemsPerPage = 6;
   const ApiPath = "http://localhost:2005/data";
   const [allFilms, setAllFilms] = useState([]);
   const [films, setFilms] = useState([]);
+
   useEffect(() => {
     fetch(ApiPath)
       .then((res) => res.json())
       .then((data) => {
         setAllFilms(data);
-        setFilms(data);
+        setFilms(data.slice(0, itemsPerPage));
       });
   }, []);
   const navigate = useNavigate();
   const handleBtnForm = (param) => {
     navigate(param ? `/updateFilm/${param}` : `/createFilm`);
   };
+
   const handleBtnDetaille = (param) => {
     navigate(`/FilmDetaille/${param}`);
   };
+
   const handleBtnDelete = (id) => {
     if (confirm("Are You Sure ?")) {
       fetch(`${ApiPath}/${id}`, {
@@ -30,9 +34,42 @@ export default function Home() {
       });
     }
   };
+
+  // make Buttons =>
+  const makeButtons = () => {
+    const totalItems = allFilms.length;
+    let totalPages = Math.ceil(totalItems / itemsPerPage);
+    let pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+    const a = pages.map((ele, index) => {
+      return (
+        <button
+          onClick={() => Paginate(ele)}
+          key={index}
+          style={{
+            background: "red",
+            color: "white",
+            padding: "10px",
+            marginRight: "5px",
+            cursor: "pointer",
+          }}
+        >
+          {ele}
+        </button>
+      );
+    });
+    return a;
+  };
+
+  const Paginate = (param) => {
+    const start = (param - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    setFilms(allFilms.slice(start, end));
+  };
+
   return (
     <div className="container" style={{ maxWidth: "1100px", margin: "auto" }}>
       <h1>Gestionaire De Filmes</h1>
+
       <button
         onClick={() => handleBtnForm()}
         style={{
@@ -90,6 +127,12 @@ export default function Home() {
           })}
         </tbody>
       </table>
+      <div
+        style={{ display: "flex", alignItems: "center" }}
+        className="filter-button"
+      >
+        {makeButtons()}
+      </div>
     </div>
   );
 }

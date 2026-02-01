@@ -55,6 +55,13 @@
       "genre": "comedie",
       "stock": "20",
       "evaluation": "4.3"
+    },
+    {
+      "id": "1769984178188",
+      "titre": "mohamed",
+      "genre": "thriller",
+      "stock": "20",
+      "evaluation": "2.4"
     }
   ]
 }
